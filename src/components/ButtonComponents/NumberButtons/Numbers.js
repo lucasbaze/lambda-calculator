@@ -1,32 +1,48 @@
 import React, { useState } from 'react';
 
 //import any components needed
-import StyledNumberButton from './NumberButton.js';
+import Button from '../Button.js';
 
 //Import your array data to from the provided data file
 import { numbers } from '../../../data.js';
 
-const Numbers = () => {
+const styles = {
+    gridColumn: '1 / span 3',
+    gridRow: '2 / span 4',
+    display: 'flex',
+    flexFlow: 'row wrap',
+    justifyContent: 'space-between',
+};
+
+const Numbers = props => {
     // STEP 2 - add the imported data to state
     const [numbersToSelect, setNumbers] = useState(numbers);
-    let props = {
-        padding: 20,
+
+    let overRide = {
+        width: 70,
     };
 
     return (
-        <div>
+        <div style={styles}>
             {/* STEP 3 - Use .map() to iterate over your array data and return a button
        component matching the name on the provided file. Pass
        it any props needed by the child component*/}
             {numbersToSelect.map((number, index) => {
-                if (number == 0) {
-                    props = { ...props, padding: 40 };
+                if (index === 9) {
+                    overRide.width = 180;
+                } else {
+                    overRide.width = 70;
                 }
 
                 return (
-                    <StyledNumberButton {...props} key={index}>
+                    <Button
+                        {...overRide}
+                        key={index}
+                        value={Number(number)}
+                        onClick={e => props.updateOperation(e.target.value)}
+                    >
                         {number}
-                    </StyledNumberButton>
+                    </Button>
                 );
             })}
         </div>

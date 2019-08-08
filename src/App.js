@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import styled from 'styled-components';
 import * as C from './components';
@@ -15,13 +15,26 @@ function App() {
     // the "5" button, or the operator if they click one of those buttons) and then call your setter function to update state.
     // Don't forget to pass the functions (and any additional data needed) to the components as props
 
+    const [operation, setOperation] = useState([]);
+    const [result, setResult] = useState(0);
+    const [numbersToCrunch, setNumbersToCrunch] = useState(0);
+    const [specialActions, setSpecialActions] = useState(0);
+
+    const updateOperation = value => {
+        console.log(operation);
+        setOperation([...operation, value]);
+    };
+
+    const updateNumbersToCrunch = value => {};
+
     return (
         <div className="container">
             <C.Logo />
-            <C.Display />
+            <C.Display>{numbersToCrunch}</C.Display>
             <div className="App">
-                <C.Specials />
-                <C.Operators />
+                <C.Specials updateOperation={updateOperation} />
+                <C.Operators updateOperation={updateOperation} />
+                <C.Numbers updateOperation={updateOperation} />
                 {/* STEP 4 - Render your components here and be sure to properly import/export all files */}
             </div>
         </div>

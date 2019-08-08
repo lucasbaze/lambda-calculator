@@ -9,13 +9,14 @@ import { operators } from '../../../data.js';
 
 const styles = {
     gridColumn: '4',
-    gridRow: '1 / span 4',
+    gridRow: '1 / span 5',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
+    alignItems: 'flex-end',
 };
 
-const Operators = () => {
+const Operators = props => {
     // STEP 2 - add the imported data to state
     const [operatorChars, setOperators] = useState(operators);
 
@@ -25,7 +26,12 @@ const Operators = () => {
        component matching the name on the provided file. Pass
        it any props needed by the child component*/}
             {operatorChars.map((operator, index) => (
-                <Button key={index} bgColor={colors.operatorColor}>
+                <Button
+                    key={index}
+                    value={operator.value}
+                    bgColor={colors.operatorColor}
+                    onClick={e => props.updateOperation(e.target.value)}
+                >
                     {operator.char}
                 </Button>
             ))}
