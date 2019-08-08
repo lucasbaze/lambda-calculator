@@ -1,16 +1,36 @@
-import React from "react";
+import React, { useState } from 'react';
 
 //import any components needed
+import Button from '../Button.js';
+import { colors } from '../../../styles.js';
 
 //Import your array data to from the provided data file
+import { operators } from '../../../data.js';
+
+const styles = {
+    gridColumn: '4',
+    gridRow: '1 / span 4',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+};
 
 const Operators = () => {
-  // STEP 2 - add the imported data to state
-  return (
-    <div>
-      {/* STEP 3 - Use .map() to iterate over your array data and return a button
+    // STEP 2 - add the imported data to state
+    const [operatorChars, setOperators] = useState(operators);
+
+    return (
+        <div style={styles}>
+            {/* STEP 3 - Use .map() to iterate over your array data and return a button
        component matching the name on the provided file. Pass
        it any props needed by the child component*/}
-    </div>
-  );
+            {operatorChars.map((operator, index) => (
+                <Button key={index} bgColor={colors.operatorColor}>
+                    {operator.char}
+                </Button>
+            ))}
+        </div>
+    );
 };
+
+export default Operators;

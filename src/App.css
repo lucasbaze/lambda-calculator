@@ -1,0 +1,25 @@
+.container {
+    max-width: 400px;
+    padding: 2rem;
+    margin: 0 auto;
+    display: flex;
+    background-color: #bb1232;
+    border-radius: 10px;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.App {
+    display: grid;
+    grid-template-columns: repeat(25%);
+    grid-template-rows: repeat(20%);
+    margin-top: 20px;
+}
+
+/* .specialChars {
+    grid-column: 1 / span 2;
+}
+
+.notSpecialChars {
+    grid-column: 3 / span 1;
+} */
