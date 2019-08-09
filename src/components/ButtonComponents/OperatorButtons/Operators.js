@@ -25,16 +25,30 @@ const Operators = props => {
             {/* STEP 3 - Use .map() to iterate over your array data and return a button
        component matching the name on the provided file. Pass
        it any props needed by the child component*/}
-            {operatorChars.map((operator, index) => (
-                <Button
-                    key={index}
-                    value={operator.value}
-                    bgColor={colors.operatorColor}
-                    onClick={e => props.updateOperation(e.target.value)}
-                >
-                    {operator.char}
-                </Button>
-            ))}
+            {operatorChars.map((operator, index) => {
+                if (operator.char === '=') {
+                    return (
+                        <Button
+                            key={index}
+                            value={operator.value}
+                            bgColor={colors.operatorColor}
+                            onClick={e => props.calculate()}
+                        >
+                            {operator.char}
+                        </Button>
+                    );
+                }
+                return (
+                    <Button
+                        key={index}
+                        value={operator.value}
+                        bgColor={colors.operatorColor}
+                        onClick={e => props.onClick(e.target.value)}
+                    >
+                        {operator.char}
+                    </Button>
+                );
+            })}
         </div>
     );
 };

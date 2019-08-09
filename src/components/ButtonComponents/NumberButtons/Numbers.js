@@ -38,8 +38,8 @@ const Numbers = props => {
                     <Button
                         {...overRide}
                         key={index}
-                        value={Number(number)}
-                        onClick={e => props.updateOperation(e.target.value)}
+                        value={Number(number) || '.'}
+                        onClick={e => props.onClick(e.target.value)}
                     >
                         {number}
                     </Button>
